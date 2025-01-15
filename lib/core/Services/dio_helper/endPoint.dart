@@ -4,5 +4,7 @@ class EndPoint {
   static const String register = 'register';
   static const String bestseller = 'products-bestseller';
   static const String NewArrivals = 'products-new-arrivals';
-  static const String getDatabyid = 'products/';
+  static const String categories = 'categories';
+  static const String logout = 'logout';
+  static const String addfav = 'add-to-wishlist';
 }

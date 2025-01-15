@@ -19,6 +19,7 @@ class Bestsellerwidget extends StatelessWidget {
   final String sallery;
   final String discond;
   final String sallerydis;
+  
   @override
   Widget build(BuildContext context) {
     return SizedBox(

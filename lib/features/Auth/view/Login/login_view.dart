@@ -5,9 +5,9 @@ import 'package:flutter_application_2/core/utils/Text_Styles.dart';
 import 'package:flutter_application_2/core/utils/app_colors.dart';
 import 'package:flutter_application_2/core/widget/Custom_But.dart';
 import 'package:flutter_application_2/features/Auth/view/register/signup_view.dart';
-import 'package:flutter_application_2/features/Auth/view_model/Auth/login_cubit.dart';
-import 'package:flutter_application_2/features/Auth/view_model/Auth/login_states.dart';
-import 'package:flutter_application_2/features/Home/view/home_view.dart';
+import 'package:flutter_application_2/features/Auth/view_model/Auth/Auth_cubit/login_cubit.dart';
+import 'package:flutter_application_2/features/Auth/view_model/Auth/Auth_cubit/login_states.dart';
+import 'package:flutter_application_2/features/Home/buttom_nav/buttom_nav.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
@@ -34,7 +34,7 @@ class _login_viewState extends State<login_view> {
             child: BlocConsumer<loginCubit, LoginStates>(
               listener: (context, state) {
                 if (state is LoginSuccessStates) {
-                  push(context, const homeview());
+                  push(context, const bottom_nav());
                 }
                 if (state is LoginErrorStates) {
                   showDialog(

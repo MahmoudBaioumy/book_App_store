@@ -3,10 +3,10 @@ import 'package:flutter_application_2/core/function/routing.dart';
 import 'package:flutter_application_2/core/utils/Text_Styles.dart';
 import 'package:flutter_application_2/core/utils/app_colors.dart';
 import 'package:flutter_application_2/features/Home/buttom_nav/buttom_nav.dart';
-import 'package:flutter_application_2/features/Home/view_model/BestSellerModel/bestseller_model.dart';
-import 'package:flutter_application_2/features/Home/view_model/cubit/BestSeller_cubit/home_cubit.dart';
-import 'package:flutter_application_2/features/Home/view_model/cubit/BestSeller_cubit/home_states.dart';
-import 'package:flutter_application_2/features/Home/widget/bestsallerwidget/BestSeller_home.dart';
+import 'package:flutter_application_2/features/Home/view/BestSellerview/BestSellerModel/bestseller_model.dart';
+import 'package:flutter_application_2/features/Home/view/BestSellerview/cubit_info/BestSeller_cubit/home_cubit.dart';
+import 'package:flutter_application_2/features/Home/view/BestSellerview/cubit_info/BestSeller_cubit/home_states.dart';
+import 'package:flutter_application_2/features/Home/widget/bestsallerwidget/BestSeller_home_ifo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
@@ -25,7 +25,8 @@ class _bestsellerviewState extends State<bestsellerview> {
     super.initState();
   }
 
-  BestSellerModel model = BestSellerModel();
+  BestSellerModel ?model;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,9 +51,8 @@ class _bestsellerviewState extends State<bestsellerview> {
         child: BlocConsumer<homeCubit, homeStates>(
           listener: (context, state) {
             if (state is homeSuccessState) {
-              print(state.model);
               setState(() {
-                model = state.model!;
+                model = state.model;
               });
             }
             if (state is homeErrorState) {
@@ -67,20 +67,20 @@ class _bestsellerviewState extends State<bestsellerview> {
                     child: ListView.separated(
                         itemBuilder: (context, index) {
                           return Bestsellerhome(
-                            index: index,
-                            salarydiss: model
+                            id: model!.data!.products![index].id!,
+                            salarydiss: model!
                                 .data!.products![index].priceAfterDiscount!
                                 .toString(),
-                            disscond: model.data!.products![index].discount!
+                            disscond: model!.data!.products![index].discount!
                                 .toString(),
-                            image: model.data!.products![index].image!,
-                            name: model.data!.products![index].name!,
-                            type: model.data!.products![index].category!,
-                            Sallery: model.data!.products![index].price!,
+                            image: model!.data!.products![index].image!,
+                            name: model!.data!.products![index].name!,
+                            type: model!.data!.products![index].category!,
+                            Sallery: model!.data!.products![index].price!,
                           );
                         },
                         separatorBuilder: (context, index) => const Gap(15),
-                        itemCount: model.data!.products!.length),
+                        itemCount: model!.data!.products!.length),
                   ),
                 ],
               );

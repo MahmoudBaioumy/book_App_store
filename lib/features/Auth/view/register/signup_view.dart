@@ -5,8 +5,8 @@ import 'package:flutter_application_2/core/utils/Text_Styles.dart';
 import 'package:flutter_application_2/core/utils/app_colors.dart';
 import 'package:flutter_application_2/core/widget/Custom_But.dart';
 import 'package:flutter_application_2/features/Auth/view/Login/login_view.dart';
-import 'package:flutter_application_2/features/Auth/view_model/Auth/login_states.dart';
-import 'package:flutter_application_2/features/Auth/view_model/Auth/rigister_cubit.dart';
+import 'package:flutter_application_2/features/Auth/view_model/Auth/Auth_cubit/login_states.dart';
+import 'package:flutter_application_2/features/Auth/view_model/Auth/Auth_cubit/rigister_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 

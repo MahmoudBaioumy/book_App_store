@@ -25,20 +25,50 @@ class DioHelper {
   }
 
   static Future<Response> postData(
-      {required String url, Map<String, dynamic>? data}) async {
+      {required String url,
+      Map<String, dynamic>? data,
+      String? token,
+      int? id}) async {
     dio!.options.headers = {
       "Accept": "application/json",
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      'authorization': 'Bearer $token',
     };
     return await dio!.post(url, data: data);
   }
 
   static Future<Response> grtDataById(
-      {required String url, Map<String, dynamic>? query,required id}) async {
+      {Map<String, dynamic>? query, required int id, int? token}) async {
     dio!.options.headers = {
       "Accept": "application/json",
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     };
-    return await dio!.get(url, data: id);
+    return await dio!.get('https://codingarabic.online/api/products/$id',
+        queryParameters: query);
+  }
+
+  static Future<Response> grtDataByIdandtoken(
+      {Map<String, dynamic>? query,
+      required int id,
+      required String? token}) async {
+    dio!.options.headers = {
+      "Accept": "application/json",
+      "Content-Type": "application/json",
+      'authorization': 'Bearer $token',
+    };
+    return await dio!.get('https://codingarabic.online/api/add-to-wishlist/$id',
+        queryParameters: query);
+  }
+
+  static Future<Response> grtDataBycategori({
+    Map<String, dynamic>? query,
+    required int id,
+  }) async {
+    dio!.options.headers = {
+      "Accept": "application/json",
+      "Content-Type": "application/json",
+    };
+    return await dio!.get('https://codingarabic.online/api/categories/$id',
+        queryParameters: query);
   }
 }

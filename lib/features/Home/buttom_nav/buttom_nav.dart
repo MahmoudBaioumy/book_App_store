@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/core/Services/sp_helper/sp_helper.dart';
 import 'package:flutter_application_2/core/utils/app_colors.dart';
-import 'package:flutter_application_2/features/Home/view/home_view.dart';
-import 'package:flutter_application_2/features/Home/view_model/cubit/BestSeller_cubit/home_cubit.dart';
-import 'package:flutter_application_2/features/Home/view_model/cubit/NewArrivals_cubit/NewArrivals_cubit.dart';
-import 'package:flutter_application_2/features/fav/fav.dart';
+import 'package:flutter_application_2/features/Home/view/BestSellerview/cubit_info/BestSeller_cubit/home_cubit.dart';
+import 'package:flutter_application_2/features/Home/view/NewArrivals/view/home/view_model/cubit/NewArrivals_cubit/NewArrivals_cubit.dart';
+import 'package:flutter_application_2/features/Home/view/mainHomepage/home_view.dart';
+import 'package:flutter_application_2/features/fav/view/fav.dart';
 import 'package:flutter_application_2/features/profile/view/profile_view.dart';
 import 'package:flutter_application_2/features/shop/shop.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +30,10 @@ List<Widget> Screens = [
     ],
     child: const homeview(),
   ),
-  const fav_view(),
+  fav_view(
+    id: 1,
+    token: SharedPreferencHelper.getData(key: 'token'),
+  ),
   const shop_view(),
   const profile()
 ];
@@ -57,7 +61,7 @@ class _bottom_navState extends State<bottom_nav> {
                     ColorFilter.mode(AppColor.bluecolor, BlendMode.srcIn),
               ),
               label: ''),
-          
+
           /////////2222222222222222
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
