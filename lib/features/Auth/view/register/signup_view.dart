@@ -243,7 +243,8 @@ class _signup_viweState extends State<signup_viwe> {
                                             cubit.signup();
                                           },
                                           width: 400,
-                                          background: AppColor.bluecolor,
+                                          bgColor: AppColor.bluecolor,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                 ],
                               ),

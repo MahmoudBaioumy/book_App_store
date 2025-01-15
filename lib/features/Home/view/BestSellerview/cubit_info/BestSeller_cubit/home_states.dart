@@ -19,3 +19,46 @@ class homeErrorState extends homeStates {
 
   homeErrorState({required this.error});
 }
+//////////////////////////////////////////////* -------- Cart -------------//////////////////////////////////
+
+
+class RemoveFromCartLoading extends homeStates {}
+
+class RemoveFromCartSuccess extends homeStates {
+  RemoveFromCartSuccess();
+}
+
+class RemoveFromCartError extends homeStates {
+  final String error;
+  RemoveFromCartError(this.error);
+}
+
+class UpdateCartLoading extends homeStates {}
+
+class UpdateCartSuccess extends homeStates {
+  UpdateCartSuccess();
+}
+
+class UpdateCartError extends homeStates {
+  final String error;
+  UpdateCartError(this.error);
+}
+
+class GetCartLoading extends homeStates {}
+
+class GetCartSuccess extends homeStates {}
+
+class GetCartError extends homeStates {
+  final String error;
+  GetCartError(this.error);
+}
+// order
+
+class PlaceOrderLoading extends homeStates {}
+
+class PlaceOrderSuccess extends homeStates {}
+
+class PlaceOrderError extends homeStates {
+  final String error;
+  PlaceOrderError(this.error);
+}

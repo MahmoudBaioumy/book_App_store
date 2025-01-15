@@ -179,11 +179,13 @@ class _login_viewState extends State<login_view> {
                                     ? const CircularProgressIndicator()
                                     : CustomButton(
                                         text: 'Login',
+                                        fgColor: AppColor.white1color,
                                         onPressed: () async {
                                           cubit.login();
                                         },
                                         width: 400,
-                                        background: AppColor.bluecolor,
+                                        bgColor: AppColor.bluecolor,
+                                        fontWeight: FontWeight.bold,
                                       ),
                               ],
                             ),

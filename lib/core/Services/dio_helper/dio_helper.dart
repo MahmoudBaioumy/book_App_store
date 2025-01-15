@@ -15,7 +15,9 @@ class DioHelper {
   }
 
   static Future<Response> getData(
-      {required String url, Map<String, dynamic>? query, String? token}) async {
+      {
+        required String url,
+         Map<String, dynamic>? query, String? token}) async {
     dio!.options.headers = {
       "Accept": "application/json",
       "Content-Type": "application/json",
@@ -25,7 +27,8 @@ class DioHelper {
   }
 
   static Future<Response> postData(
-      {required String url,
+      {
+        required String url,
       Map<String, dynamic>? data,
       String? token,
       int? id}) async {
@@ -71,4 +74,10 @@ class DioHelper {
     return await dio!.get('https://codingarabic.online/api/categories/$id',
         queryParameters: query);
   }
+
+
+
+
+
+  
 }

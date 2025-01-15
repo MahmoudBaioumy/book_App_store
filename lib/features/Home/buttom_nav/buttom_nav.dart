@@ -6,7 +6,8 @@ import 'package:flutter_application_2/features/Home/view/NewArrivals/view/home/v
 import 'package:flutter_application_2/features/Home/view/mainHomepage/home_view.dart';
 import 'package:flutter_application_2/features/fav/view/fav.dart';
 import 'package:flutter_application_2/features/profile/view/profile_view.dart';
-import 'package:flutter_application_2/features/shop/shop.dart';
+import 'package:flutter_application_2/features/shop/cart/presentation/view/cart_view.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -34,7 +35,7 @@ List<Widget> Screens = [
     id: 1,
     token: SharedPreferencHelper.getData(key: 'token'),
   ),
-  const shop_view(),
+  const CartView(),
   const profile()
 ];
 

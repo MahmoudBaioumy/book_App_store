@@ -113,7 +113,7 @@ class BuildMoreInfo extends StatelessWidget {
               CustomButton(
                 text: 'Add To Cart ',
                 onPressed: () {},
-                background: AppColor.bluecolor,
+                 bgColor: AppColor.bluecolor,
                 width: double.infinity,
                 height: 50,
               )

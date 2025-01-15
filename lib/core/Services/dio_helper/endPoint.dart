@@ -3,6 +3,8 @@ class EndPoint {
   static const String Login = 'login';
   static const String register = 'register';
   static const String bestseller = 'products-bestseller';
+    static const String showCart = 'cart';
+  static const String addToCart = 'add-to-cart';
   static const String NewArrivals = 'products-new-arrivals';
   static const String categories = 'categories';
   static const String logout = 'logout';

@@ -17,3 +17,12 @@ class InfoErrorState extends infoStates {
 
   InfoErrorState({required this.error});
 }
+
+class AddToCartLoading extends infoStates {}
+
+class AddToCartSuccess extends infoStates {}
+
+class AddToCartError extends infoStates {
+  final String error;
+  AddToCartError(this.error);
+}

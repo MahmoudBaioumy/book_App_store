@@ -1,6 +1,3 @@
-import 'package:flutter_application_2/features/Home/view/categories/model/AllcategoriesModel%20.dart';
-import 'package:flutter_application_2/features/Home/view/categories/model/Categori_Model.dart';
-
 class AllcategoriesState {}
 
 class AllcategoriesInitState extends AllcategoriesState {}
@@ -13,7 +10,4 @@ class AllcategoriesErrorState extends AllcategoriesState {
   AllcategoriesErrorState({required this.Error});
 }
 
-class AllcategoriesSuccessState extends AllcategoriesState {
-  AllcategoriesModel? Model;
-  AllcategoriesSuccessState({required this.Model});
-}
+class AllcategoriesSuccessState extends AllcategoriesState {}

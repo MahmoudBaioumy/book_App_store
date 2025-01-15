@@ -19,7 +19,7 @@ class Bestsellerwidget extends StatelessWidget {
   final String sallery;
   final String discond;
   final String sallerydis;
-  
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -52,7 +52,7 @@ class Bestsellerwidget extends StatelessWidget {
           ),
           const Gap(5),
           Text(
-            '${sallery}L.E',
+            '$sallery L.E',
             style: TextStyle(
                 decoration: TextDecoration.lineThrough,
                 color: AppColor.greycolor),

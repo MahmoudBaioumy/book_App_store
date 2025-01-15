@@ -251,7 +251,7 @@ class _profileState extends State<profile> {
               CustomButton(
                 text: 'EditProfile',
                 onPressed: () {},
-                background: AppColor.bluecolor,
+                bgColor: AppColor.bluecolor,
                 width: 350,
                 height: 50,
               )

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/core/function/routing.dart';
 import 'package:flutter_application_2/core/utils/Text_Styles.dart';
 import 'package:flutter_application_2/core/utils/app_colors.dart';
+import 'package:flutter_application_2/features/Home/view/BestSellerview/cubit_info/Info_Cubit.dart';
 import 'package:flutter_application_2/features/Home/view/BestSellerview/info_bestseller/view/info_BestSeller.dart';
 import 'package:gap/gap.dart';
 
@@ -111,7 +112,7 @@ class Bestsellerhome extends StatelessWidget {
                   )),
               const Spacer(),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () => Infcubit.get(context).addToCart(bookId: id),
                   icon: Icon(Icons.add_shopping_cart,
                       size: 25, color: AppColor.blackcolor))
             ],
