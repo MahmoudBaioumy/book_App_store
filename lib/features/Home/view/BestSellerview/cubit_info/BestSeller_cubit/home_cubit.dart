@@ -5,7 +5,7 @@ import 'package:flutter_application_2/core/Services/local_services.dart';
 import 'package:flutter_application_2/core/Services/sp_helper/sp_helper.dart';
 import 'package:flutter_application_2/core/co/constants.dart';
 import 'package:flutter_application_2/features/Home/view/BestSellerview/cubit_info/BestSeller_cubit/home_states.dart';
-
+import 'package:flutter_application_2/features/fav/model/get_wishlist_response.dart';
 import 'package:flutter_application_2/features/shop/cart/data/get_cart_response/show_cart_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -61,7 +61,8 @@ class homeCubit extends Cubit<homeStates> {
       ApiServices.post(
         endPoint: 'remove-from-cart',
         headers: {
-          'Authorization': 'Bearer ${SharedPreferencHelper.getData(key: 'token')}',
+          'Authorization':
+              'Bearer ${SharedPreferencHelper.getData(key: 'token')}',
         },
         query: {
           'cart_item_id': cartId.toString(),
@@ -74,16 +75,80 @@ class homeCubit extends Cubit<homeStates> {
     }
   }
 
+  addToFav(int bookId) {
+    emit(AddToFavLoading());
+
+    try {
+      ApiServices.post(
+        endPoint: 'add-to-wishlist',
+        query: {
+          'product_id': bookId,
+        },
+        headers: {
+          'Authorization':
+              'Bearer ${SharedPreferencHelper.getData(key: 'token')}',
+          // langugae
+          // contentType
+        },
+      ).then((value) {
+        emit(AddToFavSuccess());
+      });
+    } catch (e) {
+      emit(AddToFavError(e.toString()));
+    }
+  }
+
+  removeFromWishList(int bookId) {
+    emit(RemoveFromFavLoading());
+
+    try {
+      ApiServices.post(
+        endPoint: 'remove-from-wishlist',
+        query: {
+          'product_id': bookId,
+        },
+        headers: {
+          'Authorization':
+              'Bearer ${SharedPreferencHelper.getData(key: 'token')}',
+        },
+      ).then((value) {
+        emit(RemoveFromFavSuccess());
+      });
+    } catch (e) {
+      emit(RemoveFromFavError(e.toString()));
+    }
+  }
+
+  //////////////////////////////////////getfav//////////////////////////////////
+  getWishlist() {
+    emit(GetWishlistLoading());
+    try {
+      ApiServices.get(
+        endPoint: 'wishlist',
+        headers: {
+          'Authorization':
+              'Bearer ${SharedPreferencHelper.getData(key: 'token')}',
+          // langugae
+          // contentType
+        },
+      ).then((value) {
+        emit(GetWishlistSuccess(GetWishListResponse.fromJson(value)));
+      });
+    } catch (e) {
+      emit(GetWishlistError(e.toString()));
+    }
+  }
+
   // get wishlist
   getShowCart() {
-     emit(GetCartLoading());
+    emit(GetCartLoading());
     DioHelper.getData(
-      url: EndPoint.showCart,
-    token: SharedPreferencHelper.getData(key: 'token')
-    ).then((value) {
+            url: EndPoint.showCart,
+            token: SharedPreferencHelper.getData(key: 'token'))
+        .then((value) {
       // print(value.data);
 ///////////////import/////////////////////////////////////////////////////
-     showCartModel = ShowCartModel.fromJson(value.data);
+      showCartModel = ShowCartModel.fromJson(value.data);
       emit(GetCartSuccess());
     }).catchError((onError) {
       emit(GetCartError('error'));
@@ -108,7 +173,8 @@ class homeCubit extends Cubit<homeStates> {
           'address': address
         },
         headers: {
-          'Authorization': 'Bearer ${SharedPreferencHelper.getData(key: 'token')}',
+          'Authorization':
+              'Bearer ${SharedPreferencHelper.getData(key: 'token')}',
         },
       ).then((value) {
         emit(PlaceOrderSuccess());

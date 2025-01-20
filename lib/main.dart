@@ -8,7 +8,6 @@ import 'package:flutter_application_2/features/Home/view/BestSellerview/cubit_in
 import 'package:flutter_application_2/features/Home/view/NewArrivals/view/home/view_model/cubit/NewArrivals_cubit/NewArrivals_cubit.dart';
 import 'package:flutter_application_2/features/Home/view/categories/model/cubit/Allcategories_cubit.dart';
 import 'package:flutter_application_2/features/Home/view/categories/model/cubit/categories_cubit.dart';
-import 'package:flutter_application_2/features/fav/model/cubit/fav_cubit.dart';
 import 'package:flutter_application_2/features/intro/logo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,12 +35,9 @@ class MainApp extends StatelessWidget {
             create: (context) => categoriesCubit(),
             child: BlocProvider(
               create: (context) => AllInfcubit(),
-              child: BlocProvider(
-                create: (context) => favcubit(),
-                child: const MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  home: logo(),
-                ),
+              child: const MaterialApp(
+                debugShowCheckedModeBanner: false,
+                home: logo(),
               ),
             ),
           ),

@@ -41,5 +41,22 @@ class Infcubit extends Cubit<infoStates> {
       emit(AddToCartError(onError.toString()));
     });
   }
+   addTofav({required int bookId}) {
+    emit(AddTofavLoading());
+    print('addToCart addToCart ${bookId}');
+    print('addToCart addToCart ${bookId}');
+    DioHelper.postData(
+      url: EndPoint.addfav,
+      token: SharedPreferencHelper.getData(key: 'token'),
+      data: {'product_id': bookId}
+    ).then((value) {
+      
+      print('addToCart addToCart ${value.data}');
+      emit(AddTofavSuccess());
+    }).catchError((onError) {
+       print('addToCart addToCart catchError catchError ${onError.toString()}');
+      emit(AddTofavError(onError.toString()));
+    });
+  }
   
 }

@@ -1,6 +1,7 @@
 import 'package:flutter_application_2/features/Home/view/BestSellerview/BestSellerModel/bestseller_model.dart';
 import 'package:flutter_application_2/features/Home/view/NewArrivals/view/home/view_model/NewArrivalsmodel/NewArrivals_model.dart';
 import 'package:flutter_application_2/features/Home/view/NewArrivals/view/home/view_model/cubit/NewArrivals_cubit/NewArrivals_states.dart';
+import 'package:flutter_application_2/features/fav/model/get_wishlist_response.dart';
 
 class homeStates {}
 
@@ -61,4 +62,33 @@ class PlaceOrderSuccess extends homeStates {}
 class PlaceOrderError extends homeStates {
   final String error;
   PlaceOrderError(this.error);
+}
+class AddToFavLoading extends homeStates {}
+
+class AddToFavSuccess extends homeStates {}
+
+class AddToFavError extends homeStates {
+  final String error;
+  AddToFavError(this.error);
+}
+
+class RemoveFromFavLoading extends homeStates {}
+
+class RemoveFromFavSuccess extends homeStates {}
+
+class RemoveFromFavError extends homeStates {
+  final String error;
+  RemoveFromFavError(this.error);
+}
+
+class GetWishlistLoading extends homeStates {}
+
+class GetWishlistSuccess extends homeStates {
+  final GetWishListResponse getWishListResponse;
+  GetWishlistSuccess(this.getWishListResponse);
+}
+
+class GetWishlistError extends homeStates {
+  final String error;
+  GetWishlistError(this.error);
 }

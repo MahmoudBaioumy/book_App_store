@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/core/utils/Text_Styles.dart';
 import 'package:flutter_application_2/core/utils/app_colors.dart';
 import 'package:flutter_application_2/core/widget/Custom_But.dart';
-import 'package:flutter_application_2/features/fav/model/cubit/fav_cubit.dart';
 import 'package:gap/gap.dart';
 
 class BuildMoreInfo extends StatelessWidget {
@@ -54,9 +53,7 @@ class BuildMoreInfo extends StatelessWidget {
                     )),
                 const Spacer(),
                 IconButton(
-                    onPressed: () {
-                      favcubit.get(context).addfav(id: 1, token: 'token');
-                    },
+                    onPressed: () {},
                     icon: Icon(Icons.favorite_border,
                         color: AppColor.white1color))
               ],
@@ -113,7 +110,7 @@ class BuildMoreInfo extends StatelessWidget {
               CustomButton(
                 text: 'Add To Cart ',
                 onPressed: () {},
-                 bgColor: AppColor.bluecolor,
+                bgColor: AppColor.bluecolor,
                 width: double.infinity,
                 height: 50,
               )

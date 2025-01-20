@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/core/Services/sp_helper/sp_helper.dart';
 import 'package:flutter_application_2/core/utils/app_colors.dart';
 import 'package:flutter_application_2/features/Home/view/BestSellerview/cubit_info/BestSeller_cubit/home_cubit.dart';
 import 'package:flutter_application_2/features/Home/view/NewArrivals/view/home/view_model/cubit/NewArrivals_cubit/NewArrivals_cubit.dart';
 import 'package:flutter_application_2/features/Home/view/mainHomepage/home_view.dart';
-import 'package:flutter_application_2/features/fav/view/fav.dart';
+import 'package:flutter_application_2/features/fav/view/wishlist_view.dart';
 import 'package:flutter_application_2/features/profile/view/profile_view.dart';
 import 'package:flutter_application_2/features/shop/cart/presentation/view/cart_view.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -31,10 +29,7 @@ List<Widget> Screens = [
     ],
     child: const homeview(),
   ),
-  fav_view(
-    id: 1,
-    token: SharedPreferencHelper.getData(key: 'token'),
-  ),
+  const WishlistView(),
   const CartView(),
   const profile()
 ];

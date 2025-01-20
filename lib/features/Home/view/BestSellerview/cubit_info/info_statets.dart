@@ -26,3 +26,11 @@ class AddToCartError extends infoStates {
   final String error;
   AddToCartError(this.error);
 }
+class AddTofavLoading extends infoStates {}
+
+class AddTofavSuccess extends infoStates {}
+
+class AddTofavError extends infoStates {
+  final String error;
+  AddTofavError(this.error);
+}

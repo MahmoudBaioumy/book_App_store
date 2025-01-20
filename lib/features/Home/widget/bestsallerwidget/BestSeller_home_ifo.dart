@@ -106,7 +106,9 @@ class Bestsellerhome extends StatelessWidget {
             children: [
               const Gap(10),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Infcubit.get(context).addTofav(bookId: id);
+                  },
                   icon: Icon(
                     Icons.favorite_border,
                     size: 25,
