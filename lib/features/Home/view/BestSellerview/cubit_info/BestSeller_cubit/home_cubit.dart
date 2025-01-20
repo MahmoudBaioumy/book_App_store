@@ -61,7 +61,7 @@ class homeCubit extends Cubit<homeStates> {
       ApiServices.post(
         endPoint: 'remove-from-cart',
         headers: {
-          'Authorization': 'Bearer ${AppLocalStorage.getCachedData(ktoken)}',
+          'Authorization': 'Bearer ${SharedPreferencHelper.getData(key: 'token')}',
         },
         query: {
           'cart_item_id': cartId.toString(),
@@ -108,7 +108,7 @@ class homeCubit extends Cubit<homeStates> {
           'address': address
         },
         headers: {
-          'Authorization': 'Bearer ${AppLocalStorage.getCachedData(ktoken)}',
+          'Authorization': 'Bearer ${SharedPreferencHelper.getData(key: 'token')}',
         },
       ).then((value) {
         emit(PlaceOrderSuccess());

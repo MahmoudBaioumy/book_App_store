@@ -21,7 +21,7 @@ class rigisterCubit extends Cubit<RegisterStates> {
       'name': displayName.text,
       'email': emailController.text,
       'password': passwordController.text,
-      'password_confirmation': passwordController_Confirm.text
+      'password_confirmation': passwordController_Confirm.text,
     }).then((value) {
       emit(RegisterSuccessStates());
       print(value.data);

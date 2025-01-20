@@ -17,11 +17,15 @@ class _profileState extends State<profile> {
   String? name;
   String? email;
   String? token;
+  String? phone;
+  String? city;
   @override
   void initState() {
     name = SharedPreferencHelper.getData(key: 'name');
     token = SharedPreferencHelper.getData(key: 'token');
     email = SharedPreferencHelper.getData(key: 'email');
+    phone = SharedPreferencHelper.getData(key: 'phone');
+    city = SharedPreferencHelper.getData(key: 'city');
     print('$email');
     super.initState();
   }
@@ -116,7 +120,8 @@ class _profileState extends State<profile> {
                           Expanded(
                               child: Text('$name',
                                   style: getTitelstyle(
-                                      color: AppColor.blackcolor))),
+                                      color: AppColor.blackcolor,
+                                      fontWeight: FontWeight.normal))),
                         ],
                       ),
                     ),
@@ -147,7 +152,8 @@ class _profileState extends State<profile> {
                           Expanded(
                               child: Text('$email',
                                   style: getTitelstyle(
-                                      color: AppColor.blackcolor))),
+                                      color: AppColor.blackcolor,
+                                      fontWeight: FontWeight.normal))),
                         ],
                       ),
                     ),
@@ -176,9 +182,9 @@ class _profileState extends State<profile> {
                             width: 10,
                           ),
                           Expanded(
-                              child: Text('Phone',
-                                  style:
-                                      getBodystyle(color: AppColor.bluecolor))),
+                              child: Text('$phone',
+                                  style: getBodystyle(
+                                      color: AppColor.blackcolor))),
                         ],
                       ),
                     ),
@@ -207,40 +213,9 @@ class _profileState extends State<profile> {
                             width: 10,
                           ),
                           Expanded(
-                              child: Text('City',
-                                  style:
-                                      getBodystyle(color: AppColor.bluecolor))),
-                        ],
-                      ),
-                    ),
-                    const Gap(10),
-                    ///////////////////////address////////////////////////////////
-                    Container(
-                      padding: const EdgeInsets.all(15),
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey[200],
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CircleAvatar(
-                            radius: 16,
-                            backgroundColor: AppColor.bluecolor,
-                            child: const Icon(
-                              Icons.location_on_outlined,
-                              color: Colors.white,
-                              size: 30,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                              child: Text('Location',
-                                  style:
-                                      getBodystyle(color: AppColor.bluecolor))),
+                              child: Text('$city',
+                                  style: getBodystyle(
+                                      color: AppColor.blackcolor))),
                         ],
                       ),
                     ),

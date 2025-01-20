@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/core/utils/Text_Styles.dart';
 import 'package:flutter_application_2/core/utils/app_colors.dart';
@@ -40,8 +39,9 @@ class _CartItemWidgetState extends State<CartItemWidget> {
       listener: (context, state) {
         if (state is RemoveFromCartSuccess) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Removed from cart'),
+            SnackBar(
+              backgroundColor: AppColor.redcolor,
+              content: const Text('Removed from cart'),
             ),
           );
           context.read<homeCubit>().getShowCart();
@@ -82,7 +82,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                         widget.model?.itemProductName ?? '',
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
-                        style: getTitelstyle(),
+                        style: getTitelstyle(color: AppColor.greycolor),
                       )),
                       //* Remove From Cart
                       IconButton(
@@ -91,7 +91,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                                 .read<homeCubit>()
                                 .removeFromCart(widget.model?.itemId ?? 0);
                           },
-                          icon:  Icon(
+                          icon: Icon(
                             Icons.delete,
                             color: AppColor.redcolor,
                           ))
@@ -101,7 +101,8 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                     children: [
                       Text(
                         widget.model!.itemProductPrice.toString(),
-                        style: getTitelstyle(color: AppColor.greycolor).copyWith(
+                        style:
+                            getTitelstyle(color: AppColor.greycolor).copyWith(
                           decoration: TextDecoration.lineThrough,
                           decorationColor: AppColor.blackcolor,
                         ),
@@ -109,7 +110,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                       const Gap(5),
                       Text(
                         '${widget.model?.itemProductPriceAfterDiscount} EGP',
-                        style: getTitelstyle(),
+                        style: getTitelstyle(color: AppColor.bluecolor),
                       ),
                       const Spacer(),
                       Text(
@@ -152,9 +153,9 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                         log(qty.toString());
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
-                           SnackBar(
+                          SnackBar(
                             backgroundColor: AppColor.redcolor,
-                            content: Text('No more items in stock'),
+                            content: const Text('No more items in stock'),
                           ),
                         );
                       }

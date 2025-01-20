@@ -113,7 +113,7 @@ class _signup_viweState extends State<signup_viwe> {
                               padding: const EdgeInsets.all(20),
                               child: Column(
                                 children: [
-                                  ////////////// first////////////
+                                  ////////////// Name////////////
                                   TextFormField(
                                     keyboardType: TextInputType.emailAddress,
                                     controller: cubit.displayName,
@@ -135,7 +135,7 @@ class _signup_viweState extends State<signup_viwe> {
                                     },
                                   ),
                                   const Gap(10),
-                                  ////////////// second////////////
+                                  ////////////// Email////////////
                                   TextFormField(
                                     keyboardType: TextInputType.emailAddress,
                                     controller: cubit.emailController,
@@ -159,7 +159,7 @@ class _signup_viweState extends State<signup_viwe> {
                                     },
                                   ),
                                   const Gap(10),
-                                  ////////////// third////////////
+                                  ////////////// password////////////
                                   TextFormField(
                                     keyboardType: TextInputType.visiblePassword,
                                     obscureText: isVisable,
@@ -194,7 +194,7 @@ class _signup_viweState extends State<signup_viwe> {
                                     },
                                   ),
                                   const Gap(10),
-                                  ////////////// fouth////////////
+                                  ////////////// Confirm password////////////
                                   TextFormField(
                                     keyboardType: TextInputType.emailAddress,
                                     obscureText: isVisable,
@@ -234,6 +234,7 @@ class _signup_viweState extends State<signup_viwe> {
                                       return null;
                                     },
                                   ),
+
                                   const Gap(15),
                                   state is RegisterLoadingStates
                                       ? const CircularProgressIndicator()

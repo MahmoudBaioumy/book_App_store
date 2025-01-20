@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/core/co/governorates_list.dart';
 import 'package:flutter_application_2/core/function/email_vail.dart';
@@ -44,7 +43,7 @@ class _CheckoutViewState extends State<CheckoutView> {
           Navigator.pop(context);
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              backgroundColor:AppColor.redcolor,
+              backgroundColor: AppColor.redcolor,
               content: Text(state.error),
             ),
           );
@@ -167,10 +166,10 @@ class _CheckoutViewState extends State<CheckoutView> {
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: AppColor.bluecolor,
+                        color: AppColor.white1color,
                       ),
                       child: DropdownButton(
-                          dropdownColor: AppColor.bluecolor,
+                          dropdownColor: AppColor.white1color,
                           isExpanded: true,
                           value: governorateId,
                           onChanged: (value) {
@@ -223,7 +222,7 @@ class _CheckoutViewState extends State<CheckoutView> {
                       ),
                       const Gap(30),
                       CustomButton(
-                        bgColor: AppColor.blackcolor,
+                        bgColor: AppColor.bluecolor,
                         textStyle: getBodystyle(color: AppColor.white1color),
                         text: 'Back To Home ',
                         onPressed: () {

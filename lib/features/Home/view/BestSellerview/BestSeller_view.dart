@@ -25,7 +25,7 @@ class _bestsellerviewState extends State<bestsellerview> {
     super.initState();
   }
 
-  BestSellerModel ?model;
+  BestSellerModel? model;
 
   @override
   Widget build(BuildContext context) {
