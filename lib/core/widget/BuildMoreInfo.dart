@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/core/utils/Text_Styles.dart';
 import 'package:flutter_application_2/core/utils/app_colors.dart';
-import 'package:flutter_application_2/core/widget/Custom_But.dart';
 import 'package:gap/gap.dart';
 
 class BuildMoreInfo extends StatelessWidget {
@@ -52,10 +51,6 @@ class BuildMoreInfo extends StatelessWidget {
                       color: AppColor.white1color,
                     )),
                 const Spacer(),
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.favorite_border,
-                        color: AppColor.white1color))
               ],
             )
           ],
@@ -107,13 +102,6 @@ class BuildMoreInfo extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
               const Gap(15),
-              CustomButton(
-                text: 'Add To Cart ',
-                onPressed: () {},
-                bgColor: AppColor.bluecolor,
-                width: double.infinity,
-                height: 50,
-              )
             ],
           ),
         ),

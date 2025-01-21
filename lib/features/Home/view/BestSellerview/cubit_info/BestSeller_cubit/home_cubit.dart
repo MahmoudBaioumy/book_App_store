@@ -1,9 +1,7 @@
 import 'package:flutter_application_2/core/Services/api_services.dart';
 import 'package:flutter_application_2/core/Services/dio_helper/dio_helper.dart';
 import 'package:flutter_application_2/core/Services/dio_helper/endPoint.dart';
-import 'package:flutter_application_2/core/Services/local_services.dart';
 import 'package:flutter_application_2/core/Services/sp_helper/sp_helper.dart';
-import 'package:flutter_application_2/core/co/constants.dart';
 import 'package:flutter_application_2/features/Home/view/BestSellerview/cubit_info/BestSeller_cubit/home_states.dart';
 import 'package:flutter_application_2/features/fav/model/get_wishlist_response.dart';
 import 'package:flutter_application_2/features/shop/cart/data/get_cart_response/show_cart_model.dart';
@@ -40,7 +38,8 @@ class homeCubit extends Cubit<homeStates> {
       ApiServices.post(
         endPoint: 'update-cart',
         headers: {
-          'Authorization': 'Bearer ${AppLocalStorage.getCachedData(ktoken)}',
+          'Authorization':
+              'Bearer ${SharedPreferencHelper.getData(key: 'token')}',
         },
         query: {
           'cart_item_id': cartId.toString(),
@@ -141,18 +140,24 @@ class homeCubit extends Cubit<homeStates> {
 
   // get wishlist
   getShowCart() {
+    print('value.data value.datarrrrrrrr');
     emit(GetCartLoading());
-    DioHelper.getData(
-            url: EndPoint.showCart,
-            token: SharedPreferencHelper.getData(key: 'token'))
-        .then((value) {
-      // print(value.data);
+    try {
+      DioHelper.getData(
+              url: EndPoint.showCart,
+              token: SharedPreferencHelper.getData(key: 'token'))
+          .then((value) {
+        print('value.data value.data');
 ///////////////import/////////////////////////////////////////////////////
-      showCartModel = ShowCartModel.fromJson(value.data);
-      emit(GetCartSuccess());
-    }).catchError((onError) {
-      emit(GetCartError('error'));
-    });
+        showCartModel = ShowCartModel.fromJson(value.data);
+        emit(GetCartSuccess());
+      }).catchError((onError) {
+        print('value.data value.data ${onError.toString()}');
+        emit(GetCartError('error'));
+      });
+    } catch (e) {
+      print('value.data value.data ${e.toString()}');
+    }
   }
 
   placeOrder(

@@ -31,7 +31,10 @@ class _CartViewState extends State<CartView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.card_travel),
+        leading: Icon(
+          Icons.card_travel,
+          color: AppColor.bluecolor,
+        ),
         title: Text(
           'My Cart',
           style: getTitelstyle(color: AppColor.bluecolor, fontSize: 20),
@@ -107,8 +110,10 @@ class _CartViewState extends State<CartView> {
                     ),
                   );
           } else {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return Center(
+              child: CircularProgressIndicator(
+                color: AppColor.bluecolor,
+              ),
             );
           }
         },

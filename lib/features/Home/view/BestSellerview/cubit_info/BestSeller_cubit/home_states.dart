@@ -47,7 +47,9 @@ class UpdateCartError extends homeStates {
 
 class GetCartLoading extends homeStates {}
 
-class GetCartSuccess extends homeStates {}
+class GetCartSuccess extends homeStates {
+  get getCartResponse => null;
+}
 
 class GetCartError extends homeStates {
   final String error;
