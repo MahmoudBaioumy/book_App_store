@@ -48,7 +48,10 @@ class _CartItemWidgetState extends State<CartItemWidget> {
         } else if (state is UpdateCartSuccess) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text('Updated cart'),
+              backgroundColor: Colors.green,
+              content: Text(
+                'Updated cart',
+              ),
             ),
           );
           context.read<homeCubit>().getShowCart();

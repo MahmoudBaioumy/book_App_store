@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/core/function/routing.dart';
 import 'package:flutter_application_2/core/utils/Text_Styles.dart';
 import 'package:flutter_application_2/core/utils/app_colors.dart';
+import 'package:flutter_application_2/features/Home/view/BestSellerview/cubit_info/Info_Cubit.dart';
+import 'package:flutter_application_2/features/Home/view/BestSellerview/cubit_info/info_statets.dart';
 import 'package:flutter_application_2/features/Home/view/BestSellerview/info_bestseller/view/info_BestSeller.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 class NewArrivals_widget extends StatelessWidget {
@@ -101,17 +104,34 @@ class NewArrivals_widget extends StatelessWidget {
               children: [
                 const Gap(10),
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Infcubit.get(context).addTofav(bookId: id);
+                    },
                     icon: Icon(
                       Icons.favorite_border,
                       size: 25,
                       color: AppColor.blackcolor,
                     )),
                 const Spacer(),
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.add_shopping_cart,
-                        size: 25, color: AppColor.blackcolor))
+                BlocConsumer<Infcubit, infoStates>(
+                  listener: (context, state) {
+                    if (state is AddToCartSuccess) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          backgroundColor: Colors.green,
+                          content: Text('Add To Cart Success'),
+                        ),
+                      );
+                    }
+                  },
+                  builder: (context, state) {
+                    return IconButton(
+                        onPressed: () =>
+                            Infcubit.get(context).addToCart(bookId: id),
+                        icon: Icon(Icons.add_shopping_cart,
+                            size: 25, color: AppColor.blackcolor));
+                  },
+                )
               ],
             )
           ],

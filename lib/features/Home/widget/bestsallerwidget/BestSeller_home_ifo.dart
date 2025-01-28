@@ -131,7 +131,8 @@ class Bestsellerhome extends StatelessWidget {
                       onPressed: () =>
                           Infcubit.get(context).addToCart(bookId: id),
                       icon: Icon(Icons.add_shopping_cart,
-                          size: 25, color: AppColor.blackcolor));
+                          size: 25, color: AppColor.blackcolor)
+                          );
                 },
               )
             ],

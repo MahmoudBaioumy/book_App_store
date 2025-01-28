@@ -9,6 +9,7 @@ import 'package:flutter_application_2/features/Home/view/BestSellerview/cubit_in
 import 'package:flutter_application_2/features/Home/widget/bestsallerwidget/BestSeller_home_ifo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class bestsellerview extends StatefulWidget {
   const bestsellerview({super.key});
@@ -26,7 +27,7 @@ class _bestsellerviewState extends State<bestsellerview> {
   }
 
   BestSellerModel? model;
-
+  final bool _enabled = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,10 +87,24 @@ class _bestsellerviewState extends State<bestsellerview> {
               );
             }
             if (state is homeLoadingState) {
-              return Center(
-                  child: CircularProgressIndicator(
-                color: AppColor.bluecolor,
-              ));
+              return Skeletonizer(
+                enableSwitchAnimation: true,
+                child: ListView.separated(
+                    itemBuilder: (context, index) {
+                      return Bestsellerhome(
+                        id: 1,
+                        salarydiss: 235.toString(),
+                        disscond: 30.toString(),
+                        image:
+                            'https://pngimg.com/uploads/book/book_PNG51041.png',
+                        name: 'Hands-On-Machineleading',
+                        type: 'Software',
+                        Sallery: 400.toString(),
+                      );
+                    },
+                    separatorBuilder: (context, index) => const Gap(15),
+                    itemCount: 15),
+              );
             }
             return const SizedBox();
           },

@@ -10,6 +10,7 @@ import 'package:flutter_application_2/features/Home/view/categories/model/cubit/
 import 'package:flutter_application_2/features/Home/view/categories/model/cubit/categories_cubit.dart';
 import 'package:flutter_application_2/features/intro/logo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +26,18 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData(
+      extensions: const [
+        SkeletonizerConfigData(),
+      ],
+    );
+    darkTheme:
+    ThemeData(
+      brightness: Brightness.dark,
+      extensions: const [
+        SkeletonizerConfigData.dark(),
+      ],
+    );
     return BlocProvider(
       create: (context) => homeCubit(),
       child: BlocProvider(

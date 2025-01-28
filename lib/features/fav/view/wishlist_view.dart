@@ -3,8 +3,11 @@ import 'package:flutter_application_2/core/utils/Text_Styles.dart';
 import 'package:flutter_application_2/core/utils/app_colors.dart';
 import 'package:flutter_application_2/features/Home/view/BestSellerview/cubit_info/BestSeller_cubit/home_cubit.dart';
 import 'package:flutter_application_2/features/Home/view/BestSellerview/cubit_info/BestSeller_cubit/home_states.dart';
+import 'package:flutter_application_2/features/Home/widget/NewArrivalswidget/NewArrivals_home.dart';
 import 'package:flutter_application_2/features/fav/widget/wishlist_item.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class WishlistView extends StatefulWidget {
   const WishlistView({super.key});
@@ -59,10 +62,24 @@ class _WishlistViewState extends State<WishlistView> {
                     ),
                   );
           } else {
-            return Center(
-                child: CircularProgressIndicator(
-              color: AppColor.bluecolor,
-            ));
+            return Skeletonizer(
+              enableSwitchAnimation: true,
+              child: ListView.separated(
+                  itemBuilder: (context, index) {
+                    return NewArrivals_widget(
+                      id: 1,
+                      salaryydiss: 235.toString(),
+                      diss: 30.toString(),
+                      image:
+                          'https://pngimg.com/uploads/book/book_PNG51041.png',
+                      name: 'Hands-On-Machineleading',
+                      type: 'Software',
+                      Sallery: 400.toString(),
+                    );
+                  },
+                  separatorBuilder: (context, index) => const Gap(15),
+                  itemCount: 15),
+            );
           }
         },
       ),

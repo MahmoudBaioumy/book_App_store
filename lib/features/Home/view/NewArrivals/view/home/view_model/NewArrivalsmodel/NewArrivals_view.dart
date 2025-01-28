@@ -7,6 +7,7 @@ import 'package:flutter_application_2/features/Home/view/NewArrivals/view/home/v
 import 'package:flutter_application_2/features/Home/widget/NewArrivalswidget/NewArrivals_home.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class NewArrivalsView extends StatefulWidget {
   const NewArrivalsView({super.key});
@@ -82,10 +83,24 @@ class _NewArrivalsViewState extends State<NewArrivalsView> {
               );
             }
             if (state is newarrivalsloadingState) {
-              return Center(
-                  child: CircularProgressIndicator(
-                color: AppColor.bluecolor,
-              ));
+               return Skeletonizer(
+                enableSwitchAnimation: true,
+                child: ListView.separated(
+                    itemBuilder: (context, index) {
+                      return NewArrivals_widget(
+                        id: 1,
+                        salaryydiss: 235.toString(),
+                        diss: 30.toString(),
+                        image:
+                            'https://pngimg.com/uploads/book/book_PNG51041.png',
+                        name: 'Hands-On-Machineleading',
+                        type: 'Software',
+                        Sallery: 400.toString(),
+                      );
+                    },
+                    separatorBuilder: (context, index) => const Gap(15),
+                    itemCount: 15),
+              );
             }
             return const SizedBox();
           },

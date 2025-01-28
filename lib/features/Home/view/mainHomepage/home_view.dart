@@ -20,6 +20,7 @@ import 'package:flutter_application_2/features/Home/widget/NewArrivalswidget/New
 import 'package:flutter_application_2/features/Home/widget/bestsallerwidget/Bestsellerwidget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class homeview extends StatefulWidget {
   const homeview({super.key});
@@ -181,8 +182,26 @@ class _homeviewState extends State<homeview> {
                   );
                 }
                 if (state is homeLoadingState) {
-                  return CircularProgressIndicator(
-                    color: AppColor.bluecolor,
+                  return Skeletonizer(
+                    enableSwitchAnimation: true,
+                    child: SizedBox(
+                      height: 250,
+                      width: double.infinity,
+                      child: ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return Bestsellerwidget(
+                              sallerydis: 300.toString(),
+                              discond: 30.toString(),
+                              image:
+                                  'https://pngimg.com/uploads/book/book_PNG51041.png',
+                              text: 'Data Science feom Scratc..',
+                              sallery: 300.toString(),
+                            );
+                          },
+                          separatorBuilder: (context, index) => const Gap(10),
+                          itemCount: 15),
+                    ),
                   );
                 }
                 return const SizedBox();
@@ -231,8 +250,20 @@ class _homeviewState extends State<homeview> {
                     );
                   }
                   if (state is categoriesLoadingState) {
-                    return CircularProgressIndicator(
-                      color: AppColor.bluecolor,
+                    return Skeletonizer(
+                      enableSwitchAnimation: true,
+                      child: ListView.separated(
+                        itemBuilder: (context, index) {
+                          return const categoriesbuild(
+                            image: 'assets/immage3.jpg',
+                            titel: 'Software',
+                            id: 1,
+                          );
+                        },
+                        separatorBuilder: (context, index) => const Gap(5),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 5,
+                      ),
                     );
                   }
                   return const SizedBox();
@@ -294,8 +325,26 @@ class _homeviewState extends State<homeview> {
                   );
                 }
                 if (state is newarrivalsloadingState) {
-                  return CircularProgressIndicator(
-                    color: AppColor.bluecolor,
+                   return Skeletonizer(
+                    enableSwitchAnimation: true,
+                    child: SizedBox(
+                      height: 250,
+                      width: double.infinity,
+                      child: ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return NewArrivalswidget(
+                              salarydis: 300.toString(),
+                              disconds: 30.toString(),
+                              image:
+                                  'https://pngimg.com/uploads/book/book_PNG51041.png',
+                              text: 'Data Science feom Scratc..',
+                              salary: 300.toString(),
+                            );
+                          },
+                          separatorBuilder: (context, index) => const Gap(10),
+                          itemCount: 15),
+                    ),
                   );
                 }
                 return const SizedBox();

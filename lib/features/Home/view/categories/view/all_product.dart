@@ -6,6 +6,7 @@ import 'package:flutter_application_2/features/Home/view/categories/model/cubit/
 import 'package:flutter_application_2/features/Home/view/categories/model/cubit/Allcategories_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class Allproductinfo extends StatefulWidget {
   const Allproductinfo({
@@ -19,16 +20,26 @@ class Allproductinfo extends StatefulWidget {
 
 class _AllproductinfoState extends State<Allproductinfo> {
   late AllInfcubit allInfcubit;
+
+  @override
+  var name;
   @override
   void initState() {
     allInfcubit = AllInfcubit.get(context);
-
     allInfcubit.getid(id: widget.id);
+    name = allInfcubit.model?.data?.name.toString();
+    print('jnadkasnkmas$name');
 
-    print('jnadkasnkmas');
     super.initState();
   }
 
+  @override
+  void setState(VoidCallback fn) {
+    name = allInfcubit.model?.data?.name.toString();
+    super.setState(fn);
+  }
+
+  @override
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -36,7 +47,7 @@ class _AllproductinfoState extends State<Allproductinfo> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            allInfcubit.model!.data!.name.toString(),
+            name.toString(),
             style: getTitelstyle(color: AppColor.bluecolor, fontSize: 20),
           ),
           centerTitle: true,
@@ -85,10 +96,24 @@ class _AllproductinfoState extends State<Allproductinfo> {
               );
             }
             if (state is AllcategoriesLoadingState) {
-              return Center(
-                  child: CircularProgressIndicator(
-                color: AppColor.bluecolor,
-              ));
+              return Skeletonizer(
+                enableSwitchAnimation: true,
+                child: ListView.separated(
+                    itemBuilder: (context, index) {
+                      return categoriesWidget(
+                        id: 1,
+                        salarydiss: 235.toString(),
+                        disscond: 30.toString(),
+                        image:
+                            'https://pngimg.com/uploads/book/book_PNG51041.png',
+                        name: 'Hands-On-Machineleading',
+                        type: 'Software',
+                        Sallery: 400.toString(),
+                      );
+                    },
+                    separatorBuilder: (context, index) => const Gap(15),
+                    itemCount: 17),
+              );
             }
             return const SizedBox();
           },
