@@ -8,7 +8,7 @@ import 'package:flutter_application_2/features/Home/view/BestSellerview/info_bes
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
-class NewArrivals_widget extends StatelessWidget {
+class NewArrivals_widget extends StatefulWidget {
   const NewArrivals_widget({
     super.key,
     required this.image,
@@ -27,6 +27,29 @@ class NewArrivals_widget extends StatelessWidget {
   final String diss;
   final String salaryydiss;
   final int id;
+
+  @override
+  State<NewArrivals_widget> createState() => _NewArrivals_widgetState();
+}
+
+class _NewArrivals_widgetState extends State<NewArrivals_widget> {
+  @override
+  bool snak = false;
+  void showSnackBarOnce(BuildContext context) {
+    if (!snak) {
+      setState(() {
+        snak = true;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.green,
+          duration: Duration(milliseconds: 300),
+          content: Text('Add To Cart Success'),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,7 +65,7 @@ class NewArrivals_widget extends StatelessWidget {
           push(
               context,
               moreinfo(
-                id: id,
+                id: widget.id,
               ));
         },
         child: Row(
@@ -53,7 +76,8 @@ class NewArrivals_widget extends StatelessWidget {
                   width: 95,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
-                      image: DecorationImage(image: NetworkImage(image))),
+                      image:
+                          DecorationImage(image: NetworkImage(widget.image))),
                 ),
                 Container(
                   decoration: BoxDecoration(
@@ -61,7 +85,7 @@ class NewArrivals_widget extends StatelessWidget {
                   ),
                   height: 20,
                   width: 30,
-                  child: Text('$diss%'),
+                  child: Text('${widget.diss}%'),
                 )
               ],
             ),
@@ -74,7 +98,7 @@ class NewArrivals_widget extends StatelessWidget {
                   height: 20,
                   width: 150,
                   child: Text(
-                    name,
+                    widget.name,
                     style:
                         getTitelstyle(color: AppColor.blackcolor, fontSize: 14),
                     maxLines: 1,
@@ -83,18 +107,18 @@ class NewArrivals_widget extends StatelessWidget {
                 ),
                 const Gap(10),
                 Text(
-                  type,
+                  widget.type,
                   style: getBodystyle(color: AppColor.greycolor),
                 ),
                 const Gap(15),
                 Text(
-                  '${Sallery}L.E',
+                  '${widget.Sallery}L.E',
                   style: TextStyle(
                       decoration: TextDecoration.lineThrough,
                       color: AppColor.greycolor),
                 ),
                 Text(
-                  '${salaryydiss}L.E',
+                  '${widget.salaryydiss}L.E',
                   style: getBodystyle(color: AppColor.bluecolor),
                 ),
               ],
@@ -105,7 +129,7 @@ class NewArrivals_widget extends StatelessWidget {
                 const Gap(10),
                 IconButton(
                     onPressed: () {
-                      Infcubit.get(context).addTofav(bookId: id);
+                      Infcubit.get(context).addTofav(bookId: widget.id);
                     },
                     icon: Icon(
                       Icons.favorite_border,
@@ -115,19 +139,12 @@ class NewArrivals_widget extends StatelessWidget {
                 const Spacer(),
                 BlocConsumer<Infcubit, infoStates>(
                   listener: (context, state) {
-                    if (state is AddToCartSuccess) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          backgroundColor: Colors.green,
-                          content: Text('Add To Cart Success'),
-                        ),
-                      );
-                    }
+                    showSnackBarOnce(context);
                   },
                   builder: (context, state) {
                     return IconButton(
                         onPressed: () =>
-                            Infcubit.get(context).addToCart(bookId: id),
+                            Infcubit.get(context).addToCart(bookId: widget.id),
                         icon: Icon(Icons.add_shopping_cart,
                             size: 25, color: AppColor.blackcolor));
                   },

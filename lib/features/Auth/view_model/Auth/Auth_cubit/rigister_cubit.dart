@@ -14,6 +14,8 @@ class rigisterCubit extends Cubit<RegisterStates> {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var passwordController_Confirm = TextEditingController();
+  var cityController = TextEditingController();
+  var phoneController = TextEditingController();
 
   signup() {
     emit(RegisterLoadingStates());
@@ -22,10 +24,14 @@ class rigisterCubit extends Cubit<RegisterStates> {
       'email': emailController.text,
       'password': passwordController.text,
       'password_confirmation': passwordController_Confirm.text,
+      'city': cityController.text,
+      'phone': phoneController.text
     }).then((value) {
       emit(RegisterSuccessStates());
+      print("value.dataaaaa");
       print(value.data);
     }).catchError((onError) {
+      print(' objectobjectobjectobjectobjectobjectobjectobject');
       emit(RegisterErrorStates(error: 'error'));
     });
   }

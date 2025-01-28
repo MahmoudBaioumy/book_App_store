@@ -10,6 +10,7 @@ import 'package:flutter_application_2/features/Home/view/categories/model/cubit/
 import 'package:flutter_application_2/features/Home/view/categories/model/cubit/categories_cubit.dart';
 import 'package:flutter_application_2/features/intro/logo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 void main() async {
@@ -18,6 +19,7 @@ void main() async {
   await AppLocalStorage().init();
   await ApiServices().init();
   await SharedPreferencHelper.init();
+  await ScreenUtil.ensureScreenSize();
   runApp(const MainApp());
 }
 

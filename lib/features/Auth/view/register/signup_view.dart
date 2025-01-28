@@ -29,6 +29,8 @@ class _signup_viweState extends State<signup_viwe> {
           child: BlocConsumer<rigisterCubit, RegisterStates>(
             listener: (context, state) {
               if (state is RegisterErrorStates) {
+                print(state.error.toString());
+                ////////////////////////////////////////////////////////////
                 showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
@@ -234,6 +236,47 @@ class _signup_viweState extends State<signup_viwe> {
                                       return null;
                                     },
                                   ),
+                                  const Gap(10),
+                                  TextFormField(
+                                    keyboardType: TextInputType.emailAddress,
+                                    controller: cubit.cityController,
+                                    decoration: InputDecoration(
+                                      hintText: 'city',
+                                      hintStyle: getsmallstyle(
+                                          color: AppColor.bluecolor,
+                                          fontWeight: FontWeight.w600),
+                                      prefixIcon: Icon(
+                                        Icons.location_city,
+                                        color: AppColor.bluecolor,
+                                      ),
+                                    ),
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return 'Please Enter city';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  TextFormField(
+                                    keyboardType: TextInputType.phone,
+                                    controller: cubit.phoneController,
+                                    decoration: InputDecoration(
+                                      hintText: 'phone',
+                                      hintStyle: getsmallstyle(
+                                          color: AppColor.bluecolor,
+                                          fontWeight: FontWeight.w600),
+                                      prefixIcon: Icon(
+                                        Icons.phone,
+                                        color: AppColor.bluecolor,
+                                      ),
+                                    ),
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return 'Please Enter phone';
+                                      }
+                                      return null;
+                                    },
+                                  ),
 
                                   const Gap(15),
                                   state is RegisterLoadingStates
@@ -241,6 +284,9 @@ class _signup_viweState extends State<signup_viwe> {
                                       : CustomButton(
                                           text: 'Login',
                                           onPressed: () async {
+                                            print(
+                                                'erooooooooooooooooooooooooooooooo');
+                                            print(cubit.signup());
                                             cubit.signup();
                                           },
                                           width: 400,

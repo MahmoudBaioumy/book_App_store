@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/core/Services/sp_helper/sp_helper.dart';
 import 'package:flutter_application_2/core/utils/Text_Styles.dart';
 import 'package:flutter_application_2/core/utils/app_colors.dart';
-import 'package:flutter_application_2/core/widget/Custom_But.dart';
 import 'package:flutter_application_2/features/Auth/view_model/Auth/Auth_cubit/logout_cubit.dart';
 import 'package:gap/gap.dart';
 
@@ -182,9 +181,15 @@ class _profileState extends State<profile> {
                             width: 10,
                           ),
                           Expanded(
-                              child: Text('$phone',
-                                  style: getBodystyle(
-                                      color: AppColor.blackcolor))),
+                              child: (phone == null)
+                                  ? Text(
+                                      'NotAdd',
+                                      style: getBodystyle(
+                                          color: AppColor.blackcolor),
+                                    )
+                                  : Text('$phone',
+                                      style: getBodystyle(
+                                          color: AppColor.blackcolor))),
                         ],
                       ),
                     ),
@@ -213,23 +218,21 @@ class _profileState extends State<profile> {
                             width: 10,
                           ),
                           Expanded(
-                              child: Text('$city',
-                                  style: getBodystyle(
-                                      color: AppColor.blackcolor))),
+                              child: (city == null)
+                                  ? Text(
+                                      'NotAdd',
+                                      style: getBodystyle(
+                                          color: AppColor.blackcolor),
+                                    )
+                                  : Text('$city',
+                                      style: getBodystyle(
+                                          color: AppColor.blackcolor))),
                         ],
                       ),
                     ),
                   ],
                 ),
               ),
-              const Gap(20),
-              CustomButton(
-                text: 'EditProfile',
-                onPressed: () {},
-                bgColor: AppColor.bluecolor,
-                width: 350,
-                height: 50,
-              )
             ],
           ),
         ),

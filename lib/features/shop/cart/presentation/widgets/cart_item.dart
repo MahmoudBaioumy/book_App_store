@@ -23,6 +23,21 @@ class CartItemWidget extends StatefulWidget {
 
 class _CartItemWidgetState extends State<CartItemWidget> {
   int qty = 0;
+  bool snak = false;
+  void showSnackBarOnce(BuildContext context) {
+    if (!snak) {
+      setState(() {
+        snak = true;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: AppColor.redcolor,
+          duration: const Duration(milliseconds: 300),
+          content: const Text('Removed from cart'),
+        ),
+      );
+    }
+  }
 
   @override
   void initState() {
@@ -38,12 +53,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
           current is RemoveFromCartSuccess || current is UpdateCartSuccess,
       listener: (context, state) {
         if (state is RemoveFromCartSuccess) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              backgroundColor: AppColor.redcolor,
-              content: const Text('Removed from cart'),
-            ),
-          );
+          showSnackBarOnce(context);
           context.read<homeCubit>().getShowCart();
         } else if (state is UpdateCartSuccess) {
           ScaffoldMessenger.of(context).showSnackBar(
