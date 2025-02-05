@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/core/constants/appstrings.dart';
+
 import 'package:flutter_application_2/core/utils/Text_Styles.dart';
 import 'package:flutter_application_2/core/utils/app_colors.dart';
 import 'package:flutter_application_2/core/widget/Custom_But.dart';
-import 'package:flutter_application_2/features/Home/view/BestSellerview/cubit_info/BestSeller_cubit/home_cubit.dart';
-import 'package:flutter_application_2/features/Home/view/BestSellerview/cubit_info/BestSeller_cubit/home_states.dart';
-import 'package:flutter_application_2/features/Home/view/BestSellerview/cubit_info/Info_Cubit.dart';
-import 'package:flutter_application_2/features/fav/model/datum.dart';
+import 'package:flutter_application_2/features/bestseller/data/BestSeller_cubit/Info_Cubit.dart';
+import 'package:flutter_application_2/features/bestseller/data/BestSeller_cubit/home_cubit.dart';
+import 'package:flutter_application_2/features/bestseller/data/BestSeller_cubit/home_states.dart';
+import 'package:flutter_application_2/features/fav/data/model/datum.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
@@ -27,7 +29,7 @@ class WishlistItemWidget extends StatelessWidget {
         if (state is RemoveFromFavSuccess) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: const Text('Removed from wishlist'),
+              content: Text(AppStrings.RemovedWishlist),
               backgroundColor: AppColor.redcolor,
             ),
           );
@@ -91,7 +93,7 @@ class WishlistItemWidget extends StatelessWidget {
                   CustomButton(
                       height: 50,
                       width: 150,
-                      text: 'Add to cart',
+                      text: AppStrings.AddCart,
                       textStyle: getBodystyle(color: AppColor.white1color),
                       onPressed: () {
                         Infcubit.get(context).addToCart(bookId: id);

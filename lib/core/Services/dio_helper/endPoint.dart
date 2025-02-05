@@ -10,4 +10,5 @@ class EndPoint {
   static const String logout = 'logout';
   static const String addfav = 'add-to-wishlist';
   static const String update = 'update-profile';
+  static const String GetProfile = 'profile';
 }

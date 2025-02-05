@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/core/constants/appstrings.dart';
 import 'package:flutter_application_2/core/utils/Text_Styles.dart';
 import 'package:flutter_application_2/core/utils/app_colors.dart';
-import 'package:flutter_application_2/features/Home/view/BestSellerview/cubit_info/BestSeller_cubit/home_cubit.dart';
-import 'package:flutter_application_2/features/Home/view/BestSellerview/cubit_info/BestSeller_cubit/home_states.dart';
-import 'package:flutter_application_2/features/Home/widget/NewArrivalswidget/NewArrivals_home.dart';
+import 'package:flutter_application_2/features/bestseller/data/BestSeller_cubit/home_cubit.dart';
+import 'package:flutter_application_2/features/bestseller/data/BestSeller_cubit/home_states.dart';
 import 'package:flutter_application_2/features/fav/widget/wishlist_item.dart';
+import 'package:flutter_application_2/features/newarrivals/widgets/newarrivals_list.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -44,8 +45,8 @@ class _WishlistViewState extends State<WishlistView> {
           if (state is GetWishlistSuccess) {
             var list = state.getWishListResponse.data?.data;
             return list == null || list.isEmpty
-                ? const Center(
-                    child: Text('No Favourite Books'),
+                ? Center(
+                    child: Text(AppStrings.FavouriteTitel),
                   )
                 : Padding(
                     padding: const EdgeInsets.all(20),
@@ -66,7 +67,7 @@ class _WishlistViewState extends State<WishlistView> {
               enableSwitchAnimation: true,
               child: ListView.separated(
                   itemBuilder: (context, index) {
-                    return NewArrivals_widget(
+                    return NewArrival_list_Widget(
                       id: 1,
                       salaryydiss: 235.toString(),
                       diss: 30.toString(),

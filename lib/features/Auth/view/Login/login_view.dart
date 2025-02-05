@@ -1,37 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/core/constants/appstrings.dart';
+import 'package:flutter_application_2/core/constants/image_manger.dart';
 import 'package:flutter_application_2/core/function/email_vail.dart';
 import 'package:flutter_application_2/core/function/routing.dart';
 import 'package:flutter_application_2/core/utils/Text_Styles.dart';
 import 'package:flutter_application_2/core/utils/app_colors.dart';
 import 'package:flutter_application_2/core/widget/Custom_But.dart';
-import 'package:flutter_application_2/features/Auth/view/register/signup_view.dart';
-import 'package:flutter_application_2/features/Auth/view_model/Auth/Auth_cubit/login_cubit.dart';
-import 'package:flutter_application_2/features/Auth/view_model/Auth/Auth_cubit/login_states.dart';
-import 'package:flutter_application_2/features/Home/buttom_nav/buttom_nav.dart';
+import 'package:flutter_application_2/features/auth/data/cubit/auth_cubit.dart';
+import 'package:flutter_application_2/features/auth/data/cubit/auth_states.dart';
+import 'package:flutter_application_2/features/auth/data/model/auth_model.dart';
+import 'package:flutter_application_2/features/auth/view/register/signup_view.dart';
+import 'package:flutter_application_2/features/buttom_nav/view/buttom_nav.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
-class login_view extends StatefulWidget {
-  const login_view({super.key});
+class LoginView extends StatefulWidget {
+  const LoginView({super.key});
 
   @override
-  State<login_view> createState() => _login_viewState();
+  State<LoginView> createState() => _LoginViewState();
 }
 
-class _login_viewState extends State<login_view> {
+class _LoginViewState extends State<LoginView> {
   @override
   @override
   bool isVisable = true;
+  AuthModel? model;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => loginCubit(),
+      create: (context) => AuthCubit(),
       child: Scaffold(
         body: Form(
           child: SingleChildScrollView(
             key: formKey,
-            child: BlocConsumer<loginCubit, LoginStates>(
+            child: BlocConsumer<AuthCubit, AuthStates>(
               listener: (context, state) {
                 if (state is LoginSuccessStates) {
                   push(context, const bottom_nav());
@@ -57,17 +61,17 @@ class _login_viewState extends State<login_view> {
                 }
               },
               builder: (context, state) {
-                var cubit = loginCubit.get(context);
+                var cubit = AuthCubit.get(context);
                 return Padding(
                   padding: const EdgeInsets.only(top: 50),
                   child: Column(children: [
                     Image.asset(
-                      'assets/logo.PNG',
+                      ImageManger.LogoImage,
                       width: 150,
                     ),
                     const Gap(10),
                     Text(
-                      'Login Now!',
+                      AppStrings.LoginText,
                       style: getTitelstyle(
                           color: AppColor.bluecolor, fontSize: 30),
                     ),
@@ -77,7 +81,7 @@ class _login_viewState extends State<login_view> {
                       child: Row(
                         children: [
                           Text(
-                            'Don\'t have an account?',
+                            AppStrings.Rigiserhint,
                             style: getsmallstyle(),
                           ),
                           TextButton(
@@ -86,7 +90,7 @@ class _login_viewState extends State<login_view> {
                                     context, const signup_viwe());
                               },
                               child: Text(
-                                'Register Now',
+                                AppStrings.RigiserTextButton,
                                 style: getTitelstyle(
                                     color: AppColor.bluecolor,
                                     fontWeight: FontWeight.w600),
@@ -132,7 +136,7 @@ class _login_viewState extends State<login_view> {
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return 'Please Enter Email';
-                                    } else if (!emailValidate(value)) {
+                                    } else if (!EmailValidate(value)) {
                                       return 'Please Enter Email Correct';
                                     }
                                     return null;

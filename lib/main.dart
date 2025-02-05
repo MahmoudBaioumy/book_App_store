@@ -3,12 +3,11 @@ import 'package:flutter_application_2/core/Services/api_services.dart';
 import 'package:flutter_application_2/core/Services/dio_helper/dio_helper.dart';
 import 'package:flutter_application_2/core/Services/local_services.dart';
 import 'package:flutter_application_2/core/Services/sp_helper/sp_helper.dart';
-import 'package:flutter_application_2/features/Home/view/BestSellerview/cubit_info/BestSeller_cubit/home_cubit.dart';
-import 'package:flutter_application_2/features/Home/view/BestSellerview/cubit_info/Info_Cubit.dart';
-import 'package:flutter_application_2/features/Home/view/NewArrivals/view/home/view_model/cubit/NewArrivals_cubit/NewArrivals_cubit.dart';
-import 'package:flutter_application_2/features/Home/view/categories/model/cubit/Allcategories_cubit.dart';
-import 'package:flutter_application_2/features/Home/view/categories/model/cubit/categories_cubit.dart';
-import 'package:flutter_application_2/features/intro/logo.dart';
+import 'package:flutter_application_2/features/newarrivals/data/cubit/NewArrivals_cubit.dart';
+import 'package:flutter_application_2/features/bestseller/data/BestSeller_cubit/Info_Cubit.dart';
+import 'package:flutter_application_2/features/bestseller/data/BestSeller_cubit/home_cubit.dart';
+import 'package:flutter_application_2/features/categories/data/cubit/categories_cubit.dart';
+import 'package:flutter_application_2/features/splash/spalsh_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -47,13 +46,10 @@ class MainApp extends StatelessWidget {
         child: BlocProvider(
           create: (context) => Infcubit(),
           child: BlocProvider(
-            create: (context) => categoriesCubit(),
-            child: BlocProvider(
-              create: (context) => AllInfcubit(),
-              child: const MaterialApp(
-                debugShowCheckedModeBanner: false,
-                home: logo(),
-              ),
+            create: (context) => CategoriesCubit(),
+            child: const MaterialApp(
+              debugShowCheckedModeBanner: false,
+              home: SpalshScreen(),
             ),
           ),
         ),
