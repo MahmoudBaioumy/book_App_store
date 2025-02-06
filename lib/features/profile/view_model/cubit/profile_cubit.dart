@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_application_2/core/Services/dio_helper/dio_helper.dart';
 import 'package:flutter_application_2/core/Services/dio_helper/endPoint.dart';
 import 'package:flutter_application_2/features/profile/view_model/cubit/cubit_profile_states.dart';
@@ -9,7 +10,9 @@ class ProfileCubit extends Cubit<ProfileStates> {
 
   static ProfileCubit get(context) => BlocProvider.of(context);
   ProfileModel? model;
-
+ static TextEditingController NameController = TextEditingController();
+  static TextEditingController PhoneController = TextEditingController();
+ static TextEditingController CityController = TextEditingController();
   getprofile(String token) {
     emit(ProfileLoadingState());
     DioHelper.getData(url: EndPoint.GetProfile).then((value) {

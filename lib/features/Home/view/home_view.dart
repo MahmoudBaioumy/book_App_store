@@ -1,22 +1,20 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/core/Services/sp_helper/sp_helper.dart';
 import 'package:flutter_application_2/core/constants/appstrings.dart';
 import 'package:flutter_application_2/core/function/routing.dart';
 import 'package:flutter_application_2/core/utils/Text_Styles.dart';
 import 'package:flutter_application_2/core/utils/app_colors.dart';
-import 'package:flutter_application_2/features/bestseller/view/bestseller_viewmodel.dart';
-import 'package:flutter_application_2/features/categories/view/home_view/categoeir_view_model.dart';
 import 'package:flutter_application_2/features/Home/widgets/home_header.dart';
 import 'package:flutter_application_2/features/bestseller/data/BestSeller_cubit/home_cubit.dart';
 import 'package:flutter_application_2/features/bestseller/data/BestSeller_cubit/home_states.dart';
-import 'package:flutter_application_2/features/bestseller/data/model/bestseller_model.dart';
 import 'package:flutter_application_2/features/bestseller/view/BestSeller_view.dart';
+import 'package:flutter_application_2/features/bestseller/view/bestseller_viewmodel.dart';
 import 'package:flutter_application_2/features/bestseller/widgets/bestseller_info.dart';
 import 'package:flutter_application_2/features/categories/Widget/maincategories.dart';
 import 'package:flutter_application_2/features/categories/data/cubit/categories_States.dart';
 import 'package:flutter_application_2/features/categories/data/cubit/categories_cubit.dart';
 import 'package:flutter_application_2/features/categories/data/model/Categori_Model.dart';
+import 'package:flutter_application_2/features/categories/view/home_view/categoeir_view_model.dart';
 import 'package:flutter_application_2/features/newarrivals/data/cubit/NewArrivals_cubit.dart';
 import 'package:flutter_application_2/features/newarrivals/data/cubit/NewArrivals_states.dart';
 import 'package:flutter_application_2/features/newarrivals/data/model/NewArrivals_model.dart';
@@ -48,7 +46,7 @@ class _homeviewState extends State<homeview> {
       CategoeirViewModel(CategoriesCubit.get(context));
   late final BestsellerViewModel _best =
       BestsellerViewModel(homeCubit.get(context));
-  String? name;
+
   String? token;
   @override
   void initState() {
@@ -58,11 +56,12 @@ class _homeviewState extends State<homeview> {
     CategoriesCubit.get(context).GetAllCategoires();
 
     ////////////////////////////////////////////////////////////////////
-    name = SharedPreferencHelper.getData(key: 'name');
+    //var name = SharedPreferencHelper.getData(key: 'name');
 
-    print('$name xczxczxcxzczxczx');
     super.initState();
   }
+
+  // var name = SharedPreferencHelper.getData(key: 'name');
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +72,8 @@ class _homeviewState extends State<homeview> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            HeaderHome(name: name),
+            HeaderHome(),
+
             const Gap(15),
             ///////////////////////////////CarouselSlider/////////////////////////////////////////
             CarouselSlider.builder(
@@ -140,9 +140,7 @@ class _homeviewState extends State<homeview> {
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
                           return BestSellerInfo(
-                           
                             bestseller: _best.products[index],
-                            
                           );
                         },
                         separatorBuilder: (context, index) => const Gap(10),
@@ -151,7 +149,7 @@ class _homeviewState extends State<homeview> {
                 }
                 if (state is homeLoadingState) {
                   return Skeletonizer(
-                  enabled: true,
+                    enabled: true,
                     child: SizedBox(
                       height: 250,
                       width: double.infinity,
@@ -160,8 +158,6 @@ class _homeviewState extends State<homeview> {
                           itemBuilder: (context, index) {
                             return BestSellerInfo(
                               isloading: true,
-                           
-                             
                             );
                           },
                           separatorBuilder: (context, index) => const Gap(10),
@@ -251,7 +247,7 @@ class _homeviewState extends State<homeview> {
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
                           return NewArrivalsDetils(
-                            newarrivals:_best.products[index] ,
+                            newarrivals: _best.products[index],
                           );
                         },
                         separatorBuilder: (context, index) => const Gap(10),
@@ -268,7 +264,7 @@ class _homeviewState extends State<homeview> {
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
                             return NewArrivalsDetils(
-                             isloading: true,
+                              isloading: true,
                             );
                           },
                           separatorBuilder: (context, index) => const Gap(10),

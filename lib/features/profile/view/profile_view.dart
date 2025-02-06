@@ -45,23 +45,12 @@ class _ProfileViewState extends State<ProfileView> {
           }, builder: (context, state) {
             print("state $state");
             if (state is ProfileSuccessState) {
-              return ColumProfileBuild(
-                image: model?.data?.image,
-                name: model?.data?.name,
-                email: model?.data?.email!,
-                phone: model?.data?.phone!,
-                city: model?.data?.city!,
-              );
+              return ColumProfileBuild();
             }
             if (state is ProfileLoadingState) {
               return Skeletonizer(
                 enableSwitchAnimation: true,
-                child: ColumProfileBuild(
-                  name: model?.data?.name,
-                  email: model?.data?.email!,
-                  phone: model?.data?.phone!,
-                  city: model?.data?.city!,
-                ),
+                child: ColumProfileBuild(),
               );
             }
             return const SizedBox();

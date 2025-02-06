@@ -27,7 +27,12 @@ class AppStrings {
   static String CategoriesTitleHome = 'Categories';
   static String NewArrivalsTitleHome = 'New Arrivals';
 
-  ////////////////////New arrivals////////////////
+  ///========================================== NewArrival============================================///
 
   static String NewArrivalsTitel = 'New Arrivals Books';
+
+
+  ///========================================== Profile============================================///
+static String ProfileTitel = 'Profile';
+
 }

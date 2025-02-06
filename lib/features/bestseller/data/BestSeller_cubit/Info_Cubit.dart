@@ -8,55 +8,46 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class Infcubit extends Cubit<infoStates> {
   Infcubit() : super(InfoIntstate());
   static Infcubit get(context) => BlocProvider.of(context);
-   InfoModel? model;
-  ///////send the id to get it ///////////////////////////////
+  InfoModel? model;
+
+  ///======================== getInfo ====================///
   getid({required int id}) {
     emit(InfoLoadingState());
-    /////////send the id ////////////////////////////////////////////
-    DioHelper.grtDataById(id: id).then((value) 
-    {
+
+    ///======================== send the id ====================///
+    DioHelper.grtDataById(id: id).then((value) {
       model = InfoModel.fromJson(value.data);
       print(model);
       emit(InfoSuccessState(Model: model));
-    }
-    ).catchError((onError) {
+    }).catchError((onError) {
       emit(InfoErrorState(error: onError.toString()));
     });
   }
 
+  ///=================== Add To Cart ===========================///
   addToCart({required int bookId}) {
     emit(AddToCartLoading());
-    print('addToCart addToCart ${bookId}');
-    print('addToCart addToCart ${bookId}');
     DioHelper.postData(
-      url: EndPoint.addToCart,
-      token: SharedPreferencHelper.getData(key: 'token'),
-      data: {'product_id': bookId}
-    ).then((value) {
-      
-      print('addToCart addToCart ${value.data}');
+        url: EndPoint.addToCart,
+        token: SharedPreferencHelper.getData(key: 'token'),
+        data: {'product_id': bookId}).then((value) {
       emit(AddToCartSuccess());
     }).catchError((onError) {
-       print('addToCart addToCart catchError catchError ${onError.toString()}');
       emit(AddToCartError(onError.toString()));
     });
   }
-   addTofav({required int bookId}) {
+
+  ///================== Add To Fav ===========================///
+  addTofav({required int bookId}) {
     emit(AddTofavLoading());
-    print('addToCart addToCart ${bookId}');
-    print('addToCart addToCart ${bookId}');
+
     DioHelper.postData(
-      url: EndPoint.addfav,
-      token: SharedPreferencHelper.getData(key: 'token'),
-      data: {'product_id': bookId}
-    ).then((value) {
-      
-      print('addToCart addToCart ${value.data}');
+        url: EndPoint.addfav,
+        token: SharedPreferencHelper.getData(key: 'token'),
+        data: {'product_id': bookId}).then((value) {
       emit(AddTofavSuccess());
     }).catchError((onError) {
-       print('addToCart addToCart catchError catchError ${onError.toString()}');
       emit(AddTofavError(onError.toString()));
     });
   }
-  
 }

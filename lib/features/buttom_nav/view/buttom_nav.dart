@@ -6,6 +6,7 @@ import 'package:flutter_application_2/features/bestseller/data/BestSeller_cubit/
 import 'package:flutter_application_2/features/cart/view/cart_view.dart';
 import 'package:flutter_application_2/features/fav/view/wishlist_view.dart';
 import 'package:flutter_application_2/features/newarrivals/data/cubit/NewArrivals_cubit.dart';
+
 import 'package:flutter_application_2/features/profile/view/profile_view.dart';
 import 'package:flutter_application_2/features/profile/view_model/cubit/profile_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +30,7 @@ List<Widget> Screens = [
         create: (context) => NewArrivalsCubit(),
       ),
     ],
-    child: const homeview(),
+    child: homeview(),
   ),
   const WishlistView(),
   const CartView(),

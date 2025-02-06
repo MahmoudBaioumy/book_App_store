@@ -30,7 +30,7 @@ class homeCubit extends Cubit<homeStates> {
     });
   }
 
-  //* -------------- Cart ------------------------
+  ///============================ Update Cart ===========================///
 
   updateCart(int cartId, int quantity) {
     emit(UpdateCartLoading());
@@ -53,7 +53,7 @@ class homeCubit extends Cubit<homeStates> {
       emit(UpdateCartError(e.toString()));
     }
   }
-
+///============================= Remove From Cart========================///
   removeFromCart(int cartId) {
     emit(RemoveFromCartLoading());
 
@@ -74,7 +74,7 @@ class homeCubit extends Cubit<homeStates> {
       emit(RemoveFromCartError(e.toString()));
     }
   }
-
+///============================= addToFav ========================///
   addToFav(int bookId) {
     emit(AddToFavLoading());
 
@@ -97,6 +97,7 @@ class homeCubit extends Cubit<homeStates> {
       emit(AddToFavError(e.toString()));
     }
   }
+///============================= removeFromWishList ========================///
 
   removeFromWishList(int bookId) {
     emit(RemoveFromFavLoading());
@@ -118,8 +119,7 @@ class homeCubit extends Cubit<homeStates> {
       emit(RemoveFromFavError(e.toString()));
     }
   }
-
-  //////////////////////////////////////getfav//////////////////////////////////
+///============================= getWishlist ========================///
   getWishlist() {
     emit(GetWishlistLoading());
     try {

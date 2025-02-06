@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/core/constants/appstrings.dart';
 import 'package:flutter_application_2/core/utils/Text_Styles.dart';
 import 'package:flutter_application_2/core/utils/app_colors.dart';
+import 'package:flutter_application_2/features/profile/view_model/cubit/cubit_profile_states.dart';
+import 'package:flutter_application_2/features/profile/view_model/cubit/profile_cubit.dart';
+import 'package:flutter_application_2/features/profile/view_model/profile_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 class HeaderHome extends StatelessWidget {
-  const HeaderHome({
+  HeaderHome({
     super.key,
-    required this.name,
   });
 
-  final String? name;
-
+  @override
+  late ProfileModel profile = ProfileModel();
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -19,9 +22,14 @@ class HeaderHome extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Hi, $name',
-              style: getTitelstyle(color: AppColor.blackcolor),
+            BlocBuilder<ProfileCubit, ProfileStates>(
+              builder: (context, state) {
+                var name = profile.data?.name;
+                return Text(
+                  'Hi, $name',
+                  style: getTitelstyle(color: AppColor.blackcolor),
+                );
+              },
             ),
             const Gap(6),
             Text(

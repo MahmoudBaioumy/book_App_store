@@ -7,7 +7,7 @@ class ProfileModel {
   ProfileModel({this.data, this.message, this.error, this.status});
 
   ProfileModel.fromJson(Map<String, dynamic> json) {
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
     message = json['message'];
     if (json['error'] != null) {
       error = <Null>[];
@@ -19,15 +19,15 @@ class ProfileModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
-    data['message'] = this.message;
-    if (this.error != null) {
-      data['error'] = this.error ;
+    data['message'] = message;
+    if (error != null) {
+      data['error'] = error;
     }
-    data['status'] = this.status;
+    data['status'] = status;
     return data;
   }
 }
@@ -44,13 +44,13 @@ class Data {
 
   Data(
       {this.id,
-        this.name,
-        this.email,
-        this.address,
-        this.city,
-        this.phone,
-        this.emailVerified,
-        this.image});
+      this.name,
+      this.email,
+      this.address,
+      this.city,
+      this.phone,
+      this.emailVerified,
+      this.image});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -64,15 +64,15 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['email'] = this.email;
-    data['address'] = this.address;
-    data['city'] = this.city;
-    data['phone'] = this.phone;
-    data['email_verified'] = this.emailVerified;
-    data['image'] = this.image;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['email'] = email;
+    data['address'] = address;
+    data['city'] = city;
+    data['phone'] = phone;
+    data['email_verified'] = emailVerified;
+    data['image'] = image;
     return data;
   }
 }

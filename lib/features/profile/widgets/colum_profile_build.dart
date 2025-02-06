@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/features/auth/data/cubit/auth_cubit.dart';
+import 'package:flutter_application_2/core/widget/Custom_But.dart';
+
+import 'package:flutter_application_2/features/profile/view_model/cubit/profile_cubit.dart';
+import 'package:flutter_application_2/features/profile/view_model/profile_model.dart';
+import 'package:flutter_application_2/features/profile/widgets/custom_textformfield.dart';
+import 'package:flutter_application_2/features/profile/widgets/profile_header_build.dart';
 import 'package:gap/gap.dart';
 
-import '../../../core/utils/Text_Styles.dart';
 import '../../../core/utils/app_colors.dart';
 
 class ColumProfileBuild extends StatelessWidget {
-  const ColumProfileBuild(
-      {super.key, this.name, this.email, this.phone, this.city, this.image});
-  final String? name;
-  final String? email;
-  final String? phone;
-  final String? city;
-  final String? image;
+  ColumProfileBuild({super.key,  this.profile});
+
+  final ProfileModel? profile;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -34,181 +35,64 @@ class ColumProfileBuild extends StatelessWidget {
                       bottomRight: Radius.circular(100)),
                 ),
               ),
-              Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Profile',
-                        style: getTitelstyle(
-                            color: AppColor.white1color, fontSize: 40),
-                      ),
-                      const Gap(80),
-                      IconButton(
-                          onPressed: () async {
-                            AuthService().logout(context);
-                          },
-                          icon: Icon(
-                            Icons.login_outlined,
-                            color: AppColor.white1color,
-                            size: 40,
-                          ))
-                    ],
-                  ),
-                  const Gap(15),
-                  CircleAvatar(
-                    maxRadius: 80,
-                    backgroundImage: NetworkImage(image ?? ''),
-                  ),
-                ],
-              ),
+              ProfileHeaderBuild(image: profile?.data?.image??''),
             ],
           ),
         )),
         const Gap(10),
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.grey[300],
-          ),
-          child: Column(
-            children: [
-              //////////////name//////////////////
-              Container(
-                padding: const EdgeInsets.all(15),
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.grey[200],
+        Padding(
+          padding: const EdgeInsets.all(10),
+          child: Container(
+            decoration: const BoxDecoration(),
+            child: Column(
+              children: [
+                ///===================================** Name **======================================================================///
+                TextFormFiledProfile(
+                  name: profile?.data?.name ??'',
+                  controller: ProfileCubit.NameController,
+                  icon: Icon(
+                    Icons.person,
+                    color: AppColor.bluecolor,
+                  ),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CircleAvatar(
-                      radius: 16,
-                      backgroundColor: AppColor.bluecolor,
-                      child: const Icon(
-                        Icons.person,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                        child: Text(name ?? '',
-                            style: getTitelstyle(
-                                color: AppColor.blackcolor,
-                                fontWeight: FontWeight.normal))),
-                  ],
+                const Gap(10),
+
+                ///===================================** Email **======================================================================///
+                TextFormFiledProfile(
+                  name: profile?.data?.email ?? '',
+                  type: true,
+                  icon: Icon(
+                    Icons.email,
+                    color: AppColor.bluecolor,
+                  ),
                 ),
-              ),
-              const Gap(10),
-              ///////////email///////////////////////
-              Container(
-                padding: const EdgeInsets.all(15),
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.grey[200],
+                const Gap(10),
+
+                ///===================================** Phone **======================================================================///
+                TextFormFiledProfile(
+                  name: profile?.data?.phone ?? '',
+                  keyboardType: TextInputType.phone,
+                  controller: ProfileCubit.PhoneController,
+                  icon: Icon(
+                    Icons.phone,
+                    color: AppColor.bluecolor,
+                  ),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CircleAvatar(
-                      radius: 14,
-                      backgroundColor: AppColor.bluecolor,
-                      child: const Icon(
-                        Icons.email,
-                        color: Colors.white,
-                        size: 16,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                        child: Text(email ?? '',
-                            style: getTitelstyle(
-                                color: AppColor.blackcolor,
-                                fontWeight: FontWeight.normal))),
-                  ],
+                const Gap(10),
+
+                ///===================================** City **======================================================================///
+                TextFormFiledProfile(
+                  name: profile?.data?.city ?? '',
+                  controller: ProfileCubit.CityController,
+                  icon: Icon(
+                    Icons.location_city,
+                    color: AppColor.bluecolor,
+                  ),
                 ),
-              ),
-              const Gap(10),
-              ////////////////phone////////////////////////
-              Container(
-                padding: const EdgeInsets.all(15),
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.grey[200],
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CircleAvatar(
-                      radius: 16,
-                      backgroundColor: AppColor.bluecolor,
-                      child: const Icon(
-                        Icons.phone,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                        child: (phone == null)
-                            ? Text(
-                                'NotAdd',
-                                style: getBodystyle(color: AppColor.blackcolor),
-                              )
-                            : Text(phone ?? '',
-                                style:
-                                    getBodystyle(color: AppColor.blackcolor))),
-                  ],
-                ),
-              ),
-              const Gap(10),
-              ///////////city/////////////////////////////
-              Container(
-                padding: const EdgeInsets.all(15),
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.grey[200],
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CircleAvatar(
-                      radius: 16,
-                      backgroundColor: AppColor.bluecolor,
-                      child: const Icon(
-                        Icons.location_city,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                        child: (city == null)
-                            ? Text(
-                                'NotAdd',
-                                style: getBodystyle(color: AppColor.blackcolor),
-                              )
-                            : Text(city ?? '',
-                                style:
-                                    getBodystyle(color: AppColor.blackcolor))),
-                  ],
-                ),
-              ),
-            ],
+                const Gap(50),
+                CustomButton(text: 'Update Profile', onPressed: () {})
+              ],
+            ),
           ),
         ),
       ],
